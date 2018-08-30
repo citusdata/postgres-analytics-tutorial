@@ -1,9 +1,9 @@
 # pgopensv-analytics-tutorial
-\i refresh.sql
-\i schema.sql
-\i setup_rollup.sql
-\i 5minutely_aggregation.sql
-\i hourly_aggregation.sql
-\COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
-SELECT hourly_aggregation();
-SELECT five_minutely_aggregation();
+\i refresh.sql<br />
+\i schema.sql<br />
+\i setup\_rollup.sql<br />
+\i 5minutely\_aggregation.sql<br />
+\i hourly\_aggregation.sql<br />
+\COPY events(customer\_id,event\_type,country,browser,device\_id,session\_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
+SELECT hourly\_aggregation();
+SELECT five\_minutely\_aggregation();
