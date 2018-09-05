@@ -53,6 +53,7 @@ Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation
 Load a csv file into the events table.
 ```sql
 \COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
+\COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/2.csv WITH (FORMAT CSV,HEADER TRUE);
 ```
 There are [more](data) csv files which we can [load](copy.sql) later.
 
