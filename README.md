@@ -76,4 +76,7 @@ SELECT cron.schedule('', 'SELECT hourly_aggregation();');
 ```
 
 ### Data Expiry
-As you partitioned the tables,
+To expire data you can basically directly drop a partition. This can be done on a periodic basis.
+```sql
+DROP TABLE <events_partition>;
+```
