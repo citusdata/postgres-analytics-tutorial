@@ -10,7 +10,7 @@ Downloads all the scripts and data needed for the tutorial.
   git clone https://github.com/citusdata/pgopensv-analytics-tutorial.git
   cd pgopensv-analytics-tutorial 
   ```
-###Connect to the database
+### Connect to the database
 Connect to the cluster/database using any postgresql client. Below is an example using psql.
 ```bash
 psql "<connection-url>"
