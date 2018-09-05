@@ -33,7 +33,7 @@ len_session_ids=len(session_ids)
 
 print("customer_id,event_type,country,browser,device_id,session_id")
 
-for i in range(0,500000):
+for i in range(0,200000):
 	row=''
 
 	row = row + str(customer_ids[random.randint(0,len_customer_ids-1)]) +','

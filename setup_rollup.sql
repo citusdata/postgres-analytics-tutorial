@@ -54,7 +54,7 @@ $function$;
 
 -- Entries for the rollup tables so that they are getting tracked in incremental rollup process.
 INSERT INTO rollups (name, event_table_name, event_id_sequence_name)
-VALUES ('rollup_events_5min', 'events','events_id_seq');
+VALUES ('rollup_events_5min', 'events','events_event_id_seq');
 
 INSERT INTO rollups (name, event_table_name, event_id_sequence_name)
-VALUES ('rollup_events_1hr', 'events','events_id_seq');
+VALUES ('rollup_events_1hr', 'events','events_event_id_seq');
