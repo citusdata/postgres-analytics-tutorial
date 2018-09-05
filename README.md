@@ -12,6 +12,9 @@ Downloads all the scripts and data needed for the tutorial.
 * **rollup\_events_1hr**:   table to store aggregated data every 1-hour. <br />
 Connect to postgres via psql and run the below command to create the above tables. <br />
 Also note that we are sharding each of the tables on tenant\_id column. Hence they are colocated. <br />
+```sql
+\i schema.sql
+```
 
 ### Setup incremental rollup setup
 [SQL Script](setup_rollup.sql) to track the event\_id until a rollup (5min or 1hour) has been completed. This is used by the actual
@@ -19,9 +22,14 @@ rollup functions to continue the rollup from that event\_id.
 
 ### Creating rollup functions
 Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.<br />
-<br />
 **Rollup function to populate 5-minute rollup table:**[link to function definition](5minutely_aggregation.sql) <br />
+```sql
+\i 5minutely_aggregation.sql
+```
 **Rollup function to populate 1-hr rollup table:**[link to function definition](hourly_aggregation.sql)<br />
+```sql
+\i hourly_aggregation.sql
+```
 
 ### Data Load
 Load a csv file into the events table.
@@ -61,8 +69,8 @@ session_count FROM rollup_events_1hr where hour >=date_trunc('day',now())-interv
 ### Schedule Aggregation Periodically: 
 You can run the above aggregations periodically (5min or 1hr) using [pg\_cron](https://github.com/citusdata/pg_cron)
 ```sql
-SELECT cron.schedule('', 'SELECT five_minutely_aggregation();');
-SELECT cron.schedule('', 'SELECT hourly_aggregation();');
+SELECT cron.schedule('*/5 * * * *', 'SELECT five_minutely_aggregation();');
+SELECT cron.schedule('*/5 * * * *', 'SELECT hourly_aggregation();');
 ```
 
 ### Data Expiry
