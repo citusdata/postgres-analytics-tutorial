@@ -23,12 +23,12 @@ rollup functions to continue the rollup from that event\_id.
 ```
 
 ### Creating rollup functions
-Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.
-####Rollup function to populate 5-minute rollup table:
+Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.<br />
+**Rollup function to populate 5-minute rollup table:**
 ```bash
 \i 5minutely_aggregation.sql
 ```
-####Rollup function to populate 1-hr rollup table:
+**Rollup function to populate 1-hr rollup table:**
 ```bash
 \i hourly_aggregation.sql
 ```
