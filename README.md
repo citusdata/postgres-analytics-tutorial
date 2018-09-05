@@ -57,11 +57,11 @@ There are [more](data) csv files which we can [load](copy.sql) later.
 ### Run aggregation queries.
 **5-minute Aggregation**
 ```sql
-SELECT hourly_aggregation();
+SELECT five_minutely_aggregation();
 ```
 **1-hr Aggregation**
 ```sql
-SELECT five_minutely_aggregation();
+SELECT hourly_aggregation();
 ```
 
 ### Dashboard Queries
