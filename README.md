@@ -69,7 +69,7 @@ session_count FROM rollup_events_1hr where hour >=date_trunc('day',now())-interv
 ```
 
 ### Schedule Aggregation Periodically: 
-You can run the above aggregations periodically (5min or 1hr) using pg\_cron
+You can run the above aggregations periodically (5min or 1hr) using [pg\_cron] (https://github.com/citusdata/pg_cron)
 ```sql
 SELECT cron.schedule('', 'SELECT five_minutely_aggregation();');
 SELECT cron.schedule('', 'SELECT hourly_aggregation();');
