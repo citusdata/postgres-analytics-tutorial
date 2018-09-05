@@ -34,7 +34,19 @@ Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation
 \i hourly_aggregation.sql
 ```
 
-
+### Data Load
+Load a csv file into the events table. 
+```bash
 \COPY events(customer\_id,event\_type,country,browser,device\_id,session\_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
+```
+
+### Run aggregation queries.
+**5-minute Aggregation**
+```bash
 SELECT hourly\_aggregation();
+```
+**1-hr Aggregation**
+```bash
 SELECT five\_minutely\_aggregation();
+```
+
