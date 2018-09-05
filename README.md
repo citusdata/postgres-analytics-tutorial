@@ -9,12 +9,12 @@ Downloads all the scripts and data needed for the tutorial.
 Schema has 3 main tables
 * **events**: raw table which captures every event.
 * **rollup\_5mins**: table to store aggregated data every 5-minute intervals.
-* **rollup\_1hr**:   table to store aggregated data every 1-hour.
+* **rollup\_1hr**:   table to store aggregated data every 1-hour. <br />
 Connect to postgres via psql and run the below command to create the above tables. <br />
 Also note that we are sharding each of the tables on tenant\_id column. Hence they are colocated. <br />
-  ```bash
-  \i schema.sql
-  ```
+```bash
+\i schema.sql
+```
 \i schema.sql<br />
 
 <br />
