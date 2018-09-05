@@ -6,7 +6,7 @@ Downloads all the scripts and data needed for the tutorial.
   cd pgopensv-analytics-tutorial 
   ``` 
 ### Schema
-Schema has 3 main tables:
+[Schema](schema.sql) has 3 main tables:
 * **events**: raw table which captures every event. It is a partitioned table. You'd creating a partition every 5 minutes. Used [pg\_partman](https://www.citusdata.com/blog/2018/01/24/citus-and-pg-partman-creating-a-scalable-time-series-database-on-PostgreSQL/) to create partitions.
 * **rollup\_events_5mins**: table to store aggregated data every 5-minute intervals.
 * **rollup\_events_1hr**:   table to store aggregated data every 1-hour. <br />
