@@ -1,10 +1,12 @@
 # pgopensv-analytics-tutorial
 ### Clone the repository
 Downloads all the scripts and data needed for the tutorial.
-```bash
+  ```bash
   git clone https://github.com/citusdata/pgopensv-analytics-tutorial.git
   pgopensv-analytics-tutorial 
-  ``` <br />
+  ``` 
+
+<br />
 \i refresh.sql<br />
 \i schema.sql<br />
 \i setup\_rollup.sql<br />
