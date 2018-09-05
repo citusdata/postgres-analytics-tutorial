@@ -46,12 +46,12 @@ Load a csv file into the events table.
 SELECT hourly_aggregation();
 ```
 **1-hr Aggregation**
-```bash
+```sql
 SELECT five_minutely_aggregation();
 ```
 
 ### Dashboard Queries
-```bash
+```sql
 --Get me the total number of events and count of distinct devices in the last 5 minutes?
 
 SELECT sum(event_count), hll_cardinality(sum(device_distinct_count)) FROM rollup_events_5min where minute >=now()-interval '5 minutes' AND minute <=now() AND customer_id=1;
@@ -67,7 +67,7 @@ SELECT hour, sum(event_count) event_count, hll_cardinality(sum(device_distinct_c
 
 ### Schedule Aggregation Periodically: 
 You can run the above aggregations periodically (5min or 1hr) using pg\_cron
-```bash
+```sql
 SELECT cron.schedule('', 'SELECT five_minutely_aggregation();');
 SELECT cron.schedule('', 'SELECT hourly_aggregation();');
 ```
