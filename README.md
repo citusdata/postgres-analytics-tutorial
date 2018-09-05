@@ -1,5 +1,7 @@
 # pgopensv-analytics-tutorial
 
+[Slide deck](https://docs.google.com/presentation/d/1294AeJ1EZXN6Ae1URD4DqW-ekHIc977atQoMDQnJc_M/edit?usp=sharing)
+
 ### Spin up the cluster
 Use this [link](http://bit.ly/citustutorial) 
 **Do not use the links in the UI to create the schema** We will create it manually.
