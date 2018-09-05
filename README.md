@@ -80,6 +80,11 @@ rollup_events_1hr where hour >=date_trunc('day',now())-interval '7 days' AND hou
 
 SELECT hour, sum(event_count) event_count, hll_cardinality(sum(device_distinct_count)) device_count, hll_cardinality(sum(session_distinct_count)) 
 session_count FROM rollup_events_1hr where hour >=date_trunc('day',now())-interval '2 days' AND hour <=now() AND customer_id=1 GROUP BY hour;
+
+-- Get me the top devices in the past 30 minutes
+SELECT (topn(topn_union_agg(top_devices_1000), 10)).item device_id
+FROM rollup_events_5min  where minute >=date_trunc('day',now())-interval '30 minutes' AND minute <=now() AND customer_id=2;
+
 ```
 
 ### Schedule Aggregation Periodically: 
