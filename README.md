@@ -24,6 +24,7 @@ rollup functions to continue the rollup from that event\_id.
 
 ### Creating rollup functions
 Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.<br />
+<br />
 **Rollup function to populate 5-minute rollup table:**
 ```bash
 \i 5minutely_aggregation.sql
