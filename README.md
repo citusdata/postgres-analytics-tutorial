@@ -15,14 +15,25 @@ Also note that we are sharding each of the tables on tenant\_id column. Hence th
 ```bash
 \i schema.sql
 ```
-\i schema.sql<br />
+### Setup incremental rollup setup
+Infra to track the event\_id until a rollup (5min or 1hour) has been completed. This is used by the actual
+rollup functions to continue the rollup from that event\_id.
+```bash
+\i setup_rollup.sql
+```
 
-<br />
-\i refresh.sql<br />
-\i schema.sql<br />
-\i setup\_rollup.sql<br />
-\i 5minutely\_aggregation.sql<br />
-\i hourly\_aggregation.sql<br />
+### Creating rollup functions
+Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.
+####Rollup function to populate 5-minute rollup table:
+```bash
+\i 5minutely_aggregation.sql
+```
+####Rollup function to populate 1-hr rollup table:
+```bash
+\i hourly_aggregation.sql
+```
+
+
 \COPY events(customer\_id,event\_type,country,browser,device\_id,session\_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
 SELECT hourly\_aggregation();
 SELECT five\_minutely\_aggregation();
