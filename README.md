@@ -16,7 +16,7 @@ Also note that we are sharding each of the tables on tenant\_id column. Hence th
 \i schema.sql
 ```
 ### Setup incremental rollup setup
-Infra to track the event\_id until a rollup (5min or 1hour) has been completed. This is used by the actual
+[SQL Script](setup_rollup.sql) to track the event\_id until a rollup (5min or 1hour) has been completed. This is used by the actual
 rollup functions to continue the rollup from that event\_id.
 ```sql
 \i setup_rollup.sql
@@ -25,20 +25,21 @@ rollup functions to continue the rollup from that event\_id.
 ### Creating rollup functions
 Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.<br />
 <br />
-**Rollup function to populate 5-minute rollup table:**
+**Rollup function to populate 5-minute rollup table:** [link to function definition](5minutely_aggregation.sql)
 ```sql
 \i 5minutely_aggregation.sql
 ```
-**Rollup function to populate 1-hr rollup table:**
+**Rollup function to populate 1-hr rollup table:**[link to function definition](hourly_aggregation.sql)
 ```sql
 \i hourly_aggregation.sql
 ```
 
 ### Data Load
-Load a csv file into the events table. 
+Load a csv file into the events table.
 ```sql
 \COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
 ```
+There are [more](data) csv files which we can [load](copy.sql) later.
 
 ### Run aggregation queries.
 **5-minute Aggregation**
