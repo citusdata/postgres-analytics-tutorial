@@ -1,10 +1,21 @@
 # pgopensv-analytics-tutorial
+###Spin up the cluster
+Use this [link](http://bit.ly/citustutorial) **Do not use the links in the UI to create the schema** We will create it manually.
+
 ### Clone the repository
 Downloads all the scripts and data needed for the tutorial.
   ```bash
   git clone https://github.com/citusdata/pgopensv-analytics-tutorial.git
   cd pgopensv-analytics-tutorial 
-  ``` 
+  ```
+###Connect to the database
+Connect to the cluster/database using any postgresql client. Below is an example using psql.
+```bash
+psql "<connection-url>"
+
+```
+Follow the below steps one by one after connecting to the cluster.
+
 ### Schema
 [Schema](schema.sql) has 3 main tables:
 * **events**: raw table which captures every event. It is a partitioned table. You'd creating a partition every 5 minutes. Used [pg\_partman](https://www.citusdata.com/blog/2018/01/24/citus-and-pg-partman-creating-a-scalable-time-series-database-on-PostgreSQL/) to create partitions.
@@ -19,6 +30,9 @@ Also note that we are sharding each of the tables on tenant\_id column. Hence th
 ### Setup incremental rollup setup
 [SQL Script](setup_rollup.sql) to track the event\_id until a rollup (5min or 1hour) has been completed. This is used by the actual
 rollup functions to continue the rollup from that event\_id.
+```sql
+\i setup_rollup.sql
+```
 
 ### Creating rollup functions
 Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation/rollup.<br />
