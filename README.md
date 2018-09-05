@@ -101,3 +101,9 @@ To expire data you can basically directly drop a partition. This can be done on 
 ```sql
 DROP TABLE <events_partition>;
 ```
+
+### References
+https://www.citusdata.com/blog/2017/12/27/real-time-analytics-dashboards-with-citus/ <br />
+https://www.citusdata.com/blog/2018/06/14/scalable-incremental-data-aggregation/ <br />
+https://www.citusdata.com/blog/2018/03/27/topn-for-your-postgres-database/ <br />
+https://www.citusdata.com/blog/2017/04/04/distributed\_count\_distinct\_with\_postgresql/ <br />
