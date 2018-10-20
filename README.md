@@ -1,4 +1,4 @@
-# pgopensv-analytics-tutorial
+# Architecting Real-Time Analytics for your Customers
 
 [Slide deck](https://docs.google.com/presentation/d/1294AeJ1EZXN6Ae1URD4DqW-ekHIc977atQoMDQnJc_M/edit?usp=sharing)
 
