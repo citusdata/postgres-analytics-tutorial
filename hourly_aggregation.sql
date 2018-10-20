@@ -27,7 +27,7 @@ BEGIN
 	DO UPDATE
 	SET event_count = rollup_events_1hr.event_count+excluded.event_count,
    	    device_distinct_count = hll_union(rollup_events_1hr.device_distinct_count,excluded.device_distinct_count),
-            session_distinct_count = hll_union(rollup_events_1hr.session_distinct_count,excluded.session_distinct_count);
-
+            session_distinct_count = hll_union(rollup_events_1hr.session_distinct_count,excluded.session_distinct_count),
+            top_devices_1000 = topn_union(rollup_events_1hr.top_devices_1000, excluded.top_devices_1000);
 END;
 $function$;
