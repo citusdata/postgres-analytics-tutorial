@@ -25,9 +25,10 @@ BEGIN
         GROUP BY customer_id,event_type,country,browser,minute
         ON CONFLICT (customer_id,event_type,country,browser,minute)
         DO UPDATE
-        SET event_count=excluded.event_count,
-            device_distinct_count = excluded.device_distinct_count,
-            session_distinct_count= excluded.session_distinct_count;
+        SET event_count=rollup_events_5min.event_count+excluded.event_count,
+            device_distinct_count = hll_union(rollup_events_5min.device_distinct_count, excluded.device_distinct_count),
+            session_distinct_count= hll_union(rollup_events_5min.session_distinct_count, excluded.session_distinct_count),
+            top_devices_1000 = topn_union(rollup_events_5min.top_devices_1000, excluded.top_devices_1000);
 
 END;
 $function$;
