@@ -32,7 +32,7 @@ SELECT create_distributed_table('rollup_events_5min','customer_id');
 
 CREATE TABLE rollup_events_1hr (
  customer_id bigint,
- event_type varchar,
+ event_type text,
  country text,
  browser text,
  hour timestamptz,
