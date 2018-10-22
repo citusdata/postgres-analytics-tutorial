@@ -1,13 +1,14 @@
 CREATE TABLE events(
   event_id serial,
-  event_time timestamp default now(), 
+  event_time timestamptz default now(), 
   customer_id bigint,
-  event_type varchar,
-  country varchar,
-  browser varchar,
+  event_type text,
+  country text,
+  browser text,
   device_id bigint,
   session_id bigint
-  )PARTITION BY RANGE (event_time);;
+)
+PARTITION BY RANGE (event_time);
 
 --Create 5-minutes partitions
 SELECT partman.create_parent('public.events', 'event_time', 'native', '5 minutes');
@@ -17,10 +18,10 @@ SELECT create_distributed_table('events','customer_id');
 
 CREATE TABLE rollup_events_5min (
  customer_id bigint,
- event_type varchar,
- country varchar,
- browser varchar,
- minute timestamp,
+ event_type text,
+ country text,
+ browser text,
+ minute timestamptz,
  event_count bigint,
  device_distinct_count hll,
  session_distinct_count hll,
@@ -32,9 +33,9 @@ SELECT create_distributed_table('rollup_events_5min','customer_id');
 CREATE TABLE rollup_events_1hr (
  customer_id bigint,
  event_type varchar,
- country varchar,
- browser varchar,
- hour timestamp,
+ country text,
+ browser text,
+ hour timestamptz,
  event_count bigint,
  device_distinct_count hll,
  session_distinct_count hll,
