@@ -32,6 +32,12 @@ Also note that we are sharding each of the tables on tenant\_id column. Hence th
 \i schema-2.sql
 ```
 
+### Data Load
+Load a csv file into the events table.
+```sql
+\COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
+```
+
 ### Setup incremental rollup setup
 [SQL Script](setup_rollup.sql) to track the event\_id until a rollup (5min or 1hour) has been completed. This is used by the actual
 rollup functions to continue the rollup from that event\_id.
@@ -50,14 +56,6 @@ Uses the bulk UPSERT (INSERT INTO SELECT ON CONFLICT) to perform the aggregation
 \i hourly_aggregation.sql
 ```
 
-### Data Load
-Load a csv file into the events table.
-```sql
-\COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/1.csv WITH (FORMAT CSV,HEADER TRUE);
-\COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/2.csv WITH (FORMAT CSV,HEADER TRUE);
-```
-There are [more](data) csv files which we can [load](copy.sql) later.
-
 ### Run aggregation queries.
 **5-minute Aggregation**
 ```sql
@@ -67,6 +65,16 @@ SELECT five_minutely_aggregation();
 ```sql
 SELECT hourly_aggregation();
 ```
+
+### Load more data
+
+Load a csv file into the events table.
+```sql
+\COPY events(customer_id,event_type,country,browser,device_id,session_id) FROM data/2.csv WITH (FORMAT CSV,HEADER TRUE);
+```
+There are [more](data) csv files which we can [load](copy.sql) later.
+
+Re-run our aggregations.
 
 ### Dashboard Queries
 ```sql
