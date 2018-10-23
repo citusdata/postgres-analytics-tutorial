@@ -28,7 +28,8 @@ Follow the below steps one by one after connecting to the cluster.
 Connect to postgres via psql and run the below command to create the above tables. <br />
 Also note that we are sharding each of the tables on tenant\_id column. Hence they are colocated. <br />
 ```sql
-\i schema.sql
+\i schema-1.sql
+\i schema-2.sql
 ```
 
 ### Setup incremental rollup setup
